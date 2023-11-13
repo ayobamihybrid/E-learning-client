@@ -56,8 +56,8 @@ const Reviews = (props: Props) => {
           <Image
             src={require('../../../public/assets/geeks.png')}
             alt=""
-            width={400}
-            height={400}
+            width={500}
+            height={500}
           />
         </div>
 
