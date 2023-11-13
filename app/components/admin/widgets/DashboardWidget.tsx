@@ -172,7 +172,7 @@ const DashboardWidget: FC<Props> = ({ open, value }) => {
           <OrderAnalytics isDashboard={true} />
         </div>
 
-        <div className="p-5 mt-[20px] ml-[47px] w-[94%]">
+        <div className="p-5 mt-[20px] ml-[47px] w-[94%] z-[-1]">
           <h5 className="dark:text-[#fff] text-black text-[20px] font-[400] font-Poppins pb-3 ">
             Recent transactions
           </h5>

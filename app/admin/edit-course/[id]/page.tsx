@@ -23,9 +23,8 @@ const page = ({params}: any) => {
           <AdminSidebar />
         </div>
 
-        <div className='w-[80%] z-999999999999999999999999999999999999999999999'>
+        <div className='w-[80%]'>
             <DashboardHeader/>
-            <CreateCourse/>
             <EditCourse id={id}/>
 
         </div>

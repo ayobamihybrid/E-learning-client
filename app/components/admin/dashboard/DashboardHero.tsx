@@ -10,7 +10,7 @@ const DashboardHero: FC<Props> = ({ isDashboard }) => {
   const [open, setOpen] = useState(false);
   
   return (
-    <div className='z-999999999999999999999999999999999999999999999'>
+    <div>
       <DashboardHeader open={open} setOpen={setOpen} />
 
       {isDashboard && <DashboardWidget open={open} />}

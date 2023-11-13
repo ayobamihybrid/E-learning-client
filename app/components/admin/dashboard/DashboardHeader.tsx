@@ -94,43 +94,45 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
       </div>
 
       {open && (
-        <div className="w-[400px] h-[50vh] dark:bg-[#121314] bg-opacity-0 bg-white shadow-xl absolute top-16 rounded z-9999999999999999999999999999">
+        <div className="w-[420px] dark:bg-[#1213145a] bg-white bg-opacity-100 shadow-xl absolute top-16 rounded ">
           <h5 className="text-center text-[20px] font-Poppins text-black dark:text-white p-3">
             Notifications
           </h5>
 
-          {notifications &&
-            notifications.map((notification: any, index: number) => (
-              <>
-                <div
-                  key={index}
-                  className="bg-[#00000039] dark:bg-[#070707a1] bg-opacity-0 p-3 font-Poppins border-b dark:border-b-[#ffffff47] border-b-[#000000f] "
-                >
-                  <div className="w-full flex items-center justify-between p-2">
-                    <p className="text-black dark:text-white">
-                      {notification.title}
+          <div className='max-h-[500px] overflow-y-auto rounded-sm'>
+            {notifications &&
+              notifications.map((notification: any, index: number) => (
+                <>
+                  <div
+                    key={index}
+                    className="bg-[#0000002a] dark:bg-[#070707a4] bg-opacity-100 p-3 font-Poppins border-b dark:border-b-[#ffffff47] border-b-[#000000f] z-999999999999999999 "
+                  >
+                    <div className="w-full flex items-center justify-between p-2">
+                      <p className="text-black dark:text-white">
+                        {notification.title}
+                      </p>
+
+                      <p
+                        className="text-black dark:text-white cursor-pointer text-[14px]"
+                        onClick={() =>
+                          handleNotificationStatusChange(notification._id)
+                        }
+                      >
+                        Mark as read
+                      </p>
+                    </div>
+
+                    <p className="text-black dark:text-white ml-2 py-2">
+                      {notification.message}
                     </p>
 
-                    <p
-                      className="text-black dark:text-white cursor-pointer text-[14px]"
-                      onClick={() =>
-                        handleNotificationStatusChange(notification._id)
-                      }
-                    >
-                      Mark as read
+                    <p className="p-2 text-black dark:text-white text-[14px]">
+                      {format(notification.createdAt)}
                     </p>
                   </div>
-
-                  <p className="text-black dark:text-white ml-2 py-2">
-                    {notification.message}
-                  </p>
-
-                  <p className="p-2 text-black dark:text-white text-[14px]">
-                    {format(notification.createdAt)}
-                  </p>
-                </div>
-              </>
-            ))}
+                </>
+              ))}
+          </div>
         </div>
       )}
     </div>

@@ -20,7 +20,7 @@ const page = (props: Props) => {
           <AdminSidebar />
         </div>
 
-        <div className='w-[80%] z-999999999999999999999999999999999999999999999 '>
+        <div className='w-[80%]'>
             <DashboardHeader/>
             <CreateCourse/>
 

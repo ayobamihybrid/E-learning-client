@@ -8,7 +8,7 @@ import CoursePreview from './CoursePreview';
 import {
   useEditCourseMutation,
   useGetAllCoursesAdminQuery,
-} from '@/redux/features/courses/coursesApi';
+} from '../../../../redux/features/courses/coursesApi';
 import toast from 'react-hot-toast';
 import { redirect } from 'next/navigation';
 
@@ -23,11 +23,12 @@ const EditCourse: FC<Props> = ({ id }) => {
   );
 
   const editCourseData =
-    data && data.courses.find((item: any) => item._id === id);
+    data && data.courses.find((course: any) => course._id === id);
 
   const [editCourse, { isSuccess, error }] = useEditCourseMutation();
 
   const [active, setActive] = useState(0);
+
   const [courseInfo, setCourseInfo] = useState({
     name: '',
     description: '',
@@ -40,7 +41,9 @@ const EditCourse: FC<Props> = ({ id }) => {
   });
 
   const [benefits, setBenefits] = useState([{ title: '' }]);
+
   const [prerequisites, setPrerequisites] = useState([{ title: '' }]);
+
   const [courseContentData, setCourseContentData] = useState([
     {
       videoUrl: '',
@@ -58,6 +61,39 @@ const EditCourse: FC<Props> = ({ id }) => {
   ]);
 
   const [courseData, setCourseData] = useState({});
+
+  useEffect(() => {
+    if (editCourseData) {
+      setCourseInfo({
+        name: editCourseData?.name,
+        description: editCourseData?.description,
+        price: editCourseData?.price,
+        estimatedPrice: editCourseData?.estimatedPrice,
+        tags: editCourseData?.tags,
+        level: editCourseData?.level,
+        thumbnail: editCourseData?.thumbnail?.url,
+        demoUrl: editCourseData?.demoUrl,
+      });
+
+      setBenefits(editCourseData.benefits);
+      setPrerequisites(editCourseData.prerequisites);
+      setCourseContentData(editCourseData.courseData);
+    }
+  }, [editCourseData]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Course updated successfully');
+      redirect('/admin/courses');
+    }
+
+    if (error) {
+      if ('data' in error) {
+        const errorMessage = error as any;
+        toast.error(errorMessage.data.message);
+      }
+    }
+  }, [isSuccess, error]);
 
   const handleSubmit = async () => {
     const formattedBenefits = benefits.map((benefit) => ({
@@ -94,40 +130,11 @@ const EditCourse: FC<Props> = ({ id }) => {
       totalVideos: courseContentData.length,
       benefits: formattedBenefits,
       prerequisites: formattedPrerequisites,
-      CourseContent: formattedCourseContentData,
+      courseData: formattedCourseContentData,
     };
 
     setCourseData(data);
   };
-
-  useEffect(() => {
-    if (editCourseData) {
-      setCourseInfo({
-        name: editCourseData?.name,
-        description: editCourseData?.description,
-        price: editCourseData?.price,
-        estimatedPrice: editCourseData?.estimatedPrice,
-        tags: editCourseData?.tags,
-        level: editCourseData?.level,
-        thumbnail: editCourseData?.thumbnail?.url,
-        demoUrl: editCourseData?.demoUrl,
-      });
-    }
-  }, [editCourseData]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success('Course updated successfully');
-      redirect('/admin/courses');
-    }
-
-    if (error) {
-      if ('data' in error) {
-        const errorMessage = error as any;
-        toast.error(errorMessage.data.message);
-      }
-    }
-  }, [isSuccess, error]);
 
   const handleCreateCourse = async (e: any) => {
     const data = courseData;
@@ -139,51 +146,59 @@ const EditCourse: FC<Props> = ({ id }) => {
 
   return (
     <div className="w-full flex min-h-screen">
-      <div className="w-[80%]">
-        {active === 0 && (
-          <CourseInformation
-            courseInfo={courseInfo}
-            setCourseInfo={setCourseInfo}
-            active={active}
-            setActive={setActive}
-          />
-        )}
+      {editCourseData ? (
+        <>
+          <div className="w-[80%]">
+            {active === 0 && (
+              <CourseInformation
+                courseInfo={courseInfo}
+                setCourseInfo={setCourseInfo}
+                active={active}
+                setActive={setActive}
+              />
+            )}
 
-        {active === 1 && (
-          <CourseData
-            benefits={benefits}
-            setBenefits={setBenefits}
-            prerequisites={prerequisites}
-            setPrerequisites={setPrerequisites}
-            active={active}
-            setActive={setActive}
-          />
-        )}
+            {active === 1 && (
+              <CourseData
+                benefits={benefits}
+                setBenefits={setBenefits}
+                prerequisites={prerequisites}
+                setPrerequisites={setPrerequisites}
+                active={active}
+                setActive={setActive}
+              />
+            )}
 
-        {active === 2 && (
-          <CourseContent
-            courseContentData={courseContentData}
-            setCourseContentData={setCourseContentData}
-            handleSubmit={handleSubmit}
-            active={active}
-            setActive={setActive}
-          />
-        )}
+            {active === 2 && (
+              <CourseContent
+                courseContentData={courseContentData}
+                setCourseContentData={setCourseContentData}
+                handleSubmit={handleSubmit}
+                active={active}
+                setActive={setActive}
+              />
+            )}
 
-        {active === 3 && (
-          <CoursePreview
-            courseData={courseData}
-            active={active}
-            setActive={setActive}
-            handleCreateCourse={handleCreateCourse}
-            isEdit={true}
-          />
-        )}
-      </div>
+            {active === 3 && (
+              <CoursePreview
+                courseData={courseData}
+                active={active}
+                setActive={setActive}
+                handleCreateCourse={handleCreateCourse}
+                isEdit={true}
+              />
+            )}
+          </div>
 
-      <div className="w-[20%] mt-[100px] h-screen fixed z-[-1] top-18 right-0">
-        <CourseOptions active={active} setActive={setActive} />
-      </div>
+          <div className="w-[20%] mt-[100px] h-screen fixed z-[-1] top-18 right-0">
+            <CourseOptions active={active} setActive={setActive} />
+          </div>
+        </>
+      ) : (
+        <p className="w-full h-screen flex items-center justify-center text-red-500">
+          Error getting course details
+        </p>
+      )}
     </div>
   );
 };

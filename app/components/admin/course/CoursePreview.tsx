@@ -14,12 +14,11 @@ type Props = {
 
 const CoursePreview: FC<Props> = ({
   courseData,
-  active,
   setActive,
   handleCreateCourse,
   isEdit,
 }) => {
-  console.log(courseData.benefits, 'benefits');
+  console.log(courseData, 'couuursedaata');
 
   const discountPercentage =
     ((courseData?.estimatedPrice - courseData?.price) /

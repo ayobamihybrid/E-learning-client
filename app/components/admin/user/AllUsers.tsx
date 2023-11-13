@@ -87,26 +87,26 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
     const team = data?.users.filter((user: any) => user.role === 'admin');
 
     team &&
-      team.forEach((item: any) => {
+      team.forEach((user: any) => {
         rows.push({
-          id: item._id,
-          name: item.name,
-          email: item.email,
-          role: item.role,
-          courses: item.courses.length,
-          created_at: format(item.createdAt),
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          courses: user.courses.length,
+          created_at: format(user.createdAt),
         });
       });
   } else {
     data &&
-      data.users.forEach((item: any) => {
+      data.users.forEach((user: any) => {
         rows.push({
-          id: item._id,
-          name: item.name,
-          email: item.email,
-          role: item.role,
-          courses: item.courses.length,
-          created_at: format(item.createdAt),
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          courses: user.courses.length,
+          created_at: format(user.createdAt),
         });
       });
   }
@@ -136,8 +136,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
   };
 
   const handleDelete = async () => {
-    const id = userId;
-    await deleteUser(id);
+    await deleteUser(userId);
     setActive(!active);
   };
 
@@ -154,7 +153,6 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                   className={`${styles.button} !w-[200px] !rounded-[10px] dark:bg-[#57c7a3] dark:border dark:border-[#ffffff6c]`}
                   onClick={() => {
                     setOpen(!open);
-                    // setUserId(params.row.id);
                   }}
                 >
                   <p className="text-[17px]">Add New Members</p>
@@ -245,8 +243,12 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
+              <option value="user" className="text-black dark:text-blue-400">
+                User
+              </option>
+              <option value="admin" className="text-black dark:text-blue-400">
+                Admin
+              </option>
             </select>
 
             <div className="mt-5 w-full">
