@@ -179,7 +179,7 @@ const CourseInformation: FC<Props> = ({
                 <option
                   value={cat.title}
                   key={cat._id}
-                  className="text-black dark:text-blue-400"
+                  className="text-black"
                 >
                   {cat.title}
                 </option>

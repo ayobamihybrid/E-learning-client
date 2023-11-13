@@ -243,10 +243,10 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >
-              <option value="user" className="text-black dark:text-blue-400">
+              <option value="user" className="text-black">
                 User
               </option>
-              <option value="admin" className="text-black dark:text-blue-400">
+              <option value="admin" className="text-black">
                 Admin
               </option>
             </select>
