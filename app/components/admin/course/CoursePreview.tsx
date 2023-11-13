@@ -46,15 +46,15 @@ const CoursePreview: FC<Props> = ({
         </div>
 
         <div className="flex items-center">
-          <h1 className="pt-5 text-[25px]">
+          <h1 className="pt-5 text-[25px] text-black dark:text-white">
             {courseData?.price == 0 ? 'Free' : courseData.price + '$'}
           </h1>
 
-          <h5 className="pl-3 text-[20px] mt-2 line-through opacity-80">
+          <h5 className="pl-3 text-[20px] mt-2 line-through opacity-80 text-black dark:text-white">
             {courseData?.estimatedPrice}$
           </h5>
 
-          <h4 className="pl-5 pt-4 text-[22px]">
+          <h4 className="pl-5 pt-4 text-[22px] text-black dark:text-white">
             {discountPercentagePrice}% off
           </h4>
         </div>
@@ -81,30 +81,38 @@ const CoursePreview: FC<Props> = ({
           </div>
         </div>
 
-        <p className="pb-1">. Source code included</p>
-        <p className="pb-1">. Full lifetime access</p>
-        <p className="pb-1">. Certificate of completion</p>
-        <p className="pb-3">. Premium support</p>
+        <p className="pb-1 text-black dark:text-white">
+          . Source code included
+        </p>
+        <p className="pb-1 text-black dark:text-white">
+          . Full lifetime access
+        </p>
+        <p className="pb-1 text-black dark:text-white">
+          . Certificate of completion
+        </p>
+        <p className="pb-3 text-black dark:text-white">. Premium support</p>
       </div>
 
       <div className="w-full">
         <div className="w-full 800px:pr-5">
-          <h1 className="text-[25px] font-Poppins font-[600]">
+          <h1 className="text-[25px] font-Poppins font-[600] text-black dark:text-white">
             {courseData?.name}
           </h1>
 
           <div className="flex items-center justify-between pt-3">
             <div className="flex items-center">
               <Ratings rating={4} />
-              <h5>0 Reviews</h5>
+              <h5 className="text-black dark:text-white">0 Reviews</h5>
             </div>
 
-            <h5>{courseData.purchased} students</h5>
+            <h5 className="text-black dark:text-white">
+              {courseData.purchased} students
+            </h5>
           </div>
 
           <br />
 
-          <h1 className="text-[25px] font-Poppins font-[600]">
+          <h1 className="text-[25px] font-Poppins font-[600] text-black dark:text-white">
             What you will learn from this course
           </h1>
 
@@ -122,7 +130,7 @@ const CoursePreview: FC<Props> = ({
         <br />
         <br />
 
-        <h1 className="text-[25px] font-Poppins font-[600]">
+        <h1 className="text-[25px] font-Poppins font-[600] text-black dark:text-white">
           What are the prerequisites for this course
         </h1>
 
@@ -142,7 +150,7 @@ const CoursePreview: FC<Props> = ({
         <br />
 
         <div className="w-full">
-          <h1 className="text-[25px] font-Poppins font-[600]">
+          <h1 className="text-[25px] font-Poppins font-[600] text-black dark:text-white">
             Course Details
           </h1>
           <p className="text-[18px] mt-[20px] whitespace-pre-line w-full overflow-hidden ">
@@ -156,14 +164,14 @@ const CoursePreview: FC<Props> = ({
 
       <div className="w-full flex items-center justify-between">
         <div
-          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer "
+          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-black dark:text-white rounded mt-8 cursor-pointer "
           onClick={() => prevButton()}
         >
           Prev
         </div>
 
         <div
-          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer "
+          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-black dark:text-white rounded mt-8 cursor-pointer "
           onClick={() => createCourse()}
         >
           {isEdit ? 'Update course' : 'Create'}
