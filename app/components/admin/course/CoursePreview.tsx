@@ -134,7 +134,10 @@ const CoursePreview: FC<Props> = ({
 
         {courseData?.prerequisites.map((prerequisite: any, index: number) => (
           <>
-            <div className="w-full flex 800px:items-center py-2" key={index}>
+            <div
+              className="w-full flex 800px:items-center py-2 text-black dark:text-white"
+              key={index}
+            >
               <div className="w-[15px] mr-1">
                 <IoCheckmarkDoneOutline size={20} />
               </div>
@@ -151,7 +154,7 @@ const CoursePreview: FC<Props> = ({
           <h1 className="text-[25px] font-Poppins font-[600] text-black dark:text-white">
             Course Details
           </h1>
-          <p className="text-[18px] mt-[20px] whitespace-pre-line w-full overflow-hidden ">
+          <p className="text-[18px] mt-[20px] whitespace-pre-line w-full overflow-hidden text-black dark:text-white ">
             {courseData?.description}
           </p>
         </div>

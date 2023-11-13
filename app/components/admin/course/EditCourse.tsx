@@ -124,7 +124,7 @@ const EditCourse: FC<Props> = ({ id }) => {
       price: courseInfo.price,
       estimatedPrice: courseInfo.estimatedPrice,
       tags: courseInfo.tags,
-      thumbnail: courseInfo.thumbnail,
+      thumbnail: courseInfo?.thumbnail,
       level: courseInfo.level,
       demoUrl: courseInfo.demoUrl,
       totalVideos: courseContentData.length,
