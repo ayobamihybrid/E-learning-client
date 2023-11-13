@@ -51,12 +51,12 @@ const CourseContentList: FC<Props> = ({
           (item: any) => item.videoSection === section
         );
 
-        const sectionVideoCount: number = sectionVideos.length;
+        const sectionVideoCount: number = sectionVideos?.length;
 
         console.log(sectionVideoCount, 'section video count');
 
         const sectionVideoLength: number = sectionVideos.reduce(
-          (acc: number, item: any) => acc + item.videoLength,
+          (acc: number, item: any) => acc + item?.videoLength,
           0
         );
 
