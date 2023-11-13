@@ -12,7 +12,7 @@ import {
   BarChartOutlinedIcon,
   MapOutlinedIcon,
   GroupsIcon,
-  OnDemandVideoIcon,
+  VideoLibraryIcon,
   VideoCallIcon,
   WebIcon,
   QuizIcon,
@@ -222,7 +222,7 @@ const AdminSidebar = () => {
             <Item
               title="Live Courses"
               to="/admin/courses"
-              icon={<OnDemandVideoIcon />}
+              icon={<VideoLibraryIcon />}
               selected={selected}
               setSelected={setSelected}
             />
