@@ -130,7 +130,7 @@ const EditCourse: FC<Props> = ({ id }) => {
       totalVideos: courseContentData.length,
       benefits: formattedBenefits,
       prerequisites: formattedPrerequisites,
-      courseData: formattedCourseContentData,
+      courseContent: formattedCourseContentData,
     };
 
     setCourseData(data);
