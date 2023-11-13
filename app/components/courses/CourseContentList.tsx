@@ -136,7 +136,7 @@ const CourseContentList: FC<Props> = ({
                               </div>
 
                               <h1 className="text-[18px] inline-block break-words text-black dark:text-white ">
-                                {item.videoSection.slice(0, 7)}
+                                {item?.videoSection?.slice(0, 7)}
                               </h1>
 
                               <h5 className="pl-8 text-black dark:text-white">

@@ -9,7 +9,7 @@ import { styles } from '../styles/styles';
 import CourseContentList from './CourseContentList';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckOutForm from '../payment/CheckOutForm';
-import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
+import { useLoadUserQuery } from '../../../redux/features/api/apiSlice';
 import Image from 'next/image';
 import avatar from '../../../public/assets/avatar3.png';
 import { MdVerified } from 'react-icons/md';

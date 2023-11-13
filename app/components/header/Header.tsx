@@ -18,7 +18,7 @@ import {
   useSocialAuthMutation,
 } from '@/redux/features/auth/authApi';
 import toast from 'react-hot-toast';
-import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
+import { useLoadUserQuery } from '../../../redux/features/api/apiSlice';
 
 type Props = {
   open: boolean;

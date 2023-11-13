@@ -7,7 +7,7 @@ import {
   LinkAuthenticationElement,
 } from '@stripe/react-stripe-js';
 import { useCreateOrderMutation } from '@/redux/features/orders/OrdersApi';
-import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
+import { useLoadUserQuery } from '../../../redux/features/api/apiSlice';
 import { styles } from '../styles/styles';
 import { redirect } from 'next/navigation';
 import toast from 'react-hot-toast';
