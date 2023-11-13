@@ -14,7 +14,7 @@ const CourseInformation: FC<Props> = ({
   setCourseInfo,
   active,
   setActive,
-}) => {  
+}) => {
   const [dragging, setDragging] = useState(false);
 
   const { data } = useGetHeroDataQuery('Categories');
@@ -176,7 +176,11 @@ const CourseInformation: FC<Props> = ({
             >
               <option value="">Select Category</option>
               {categories?.map((cat: any) => (
-                <option value={cat.title} key={cat._id}>
+                <option
+                  value={cat.title}
+                  key={cat._id}
+                  className="text-black dark:text-blue-400"
+                >
                   {cat.title}
                 </option>
               ))}
