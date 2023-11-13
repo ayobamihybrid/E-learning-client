@@ -18,8 +18,6 @@ const CoursePreview: FC<Props> = ({
   handleCreateCourse,
   isEdit,
 }) => {
-  console.log(courseData, 'couuursedaata');
-
   const discountPercentage =
     ((courseData?.estimatedPrice - courseData?.price) /
       courseData?.estimatedPrice) *
