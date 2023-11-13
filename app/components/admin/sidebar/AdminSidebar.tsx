@@ -18,7 +18,6 @@ import {
   QuizIcon,
   WysiwygIcon,
   ManageHistoryIcon,
-  SettingsIcon,
   ExitToAppIcon,
 } from '../../route/icons';
 import defaultAvatar from '../../../../public/assets/avatar1.jpg';
