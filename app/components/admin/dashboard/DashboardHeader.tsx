@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useState, useEffect } from 'react';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { ThemeSwitcher } from '../../../utils/ThemeSwitcher';
@@ -28,6 +29,12 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
 
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
+  const playNotificationSound = () => {
+    if (audio) {
+      audio.play();
+    }
+  };
+
   useEffect(() => {
     // Check if running on the client side before creating the Audio object
     if (typeof window !== 'undefined') {
@@ -38,12 +45,6 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
       );
     }
   }, []);
-
-  const playNotificationSound = () => {
-    if (audio) {
-      audio.play();
-    }
-  };
 
   useEffect(() => {
     if (data) {
