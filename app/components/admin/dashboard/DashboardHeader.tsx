@@ -40,6 +40,18 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     }
   };
 
+  
+  useEffect(() => {
+    // Check if running on the client side before creating the Audio object
+    if (typeof window !== 'undefined') {
+      setAudio(
+        new Audio(
+          'https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3'
+        )
+      );
+    }
+  }, []);
+
   useEffect(() => {
     if (data) {
       setNotifications(
@@ -55,18 +67,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     if (audio) {
       audio.load();
     }
-  }, [data, isSuccess]);
-
-  useEffect(() => {
-    // Check if running on the client side before creating the Audio object
-    if (typeof window !== 'undefined') {
-      setAudio(
-        new Audio(
-          'https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3'
-        )
-      );
-    }
-  }, []);
+  }, [data, isSuccess, audio]);
 
   useEffect(() => {
     socketId.on('newNotification', (data) => {
