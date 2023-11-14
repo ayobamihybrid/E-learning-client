@@ -28,10 +28,9 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   const [notifications, setNotifications] = useState<any>([]);
 
   const [audio, setAudio] = useState<HTMLAudioElement | null>(
-    null
-    // new Audio(
-    //   'https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3'
-    // )
+    new Audio(
+      'https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3'
+    )
   );
 
   const playNotificationSound = () => {
@@ -40,17 +39,16 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     }
   };
 
-  
-  useEffect(() => {
-    // Check if running on the client side before creating the Audio object
-    if (typeof window !== 'undefined') {
-      setAudio(
-        new Audio(
-          'https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3'
-        )
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   // Check if running on the client side before creating the Audio object
+  //   if (typeof window !== 'undefined') {
+  //     setAudio(
+  //       new Audio(
+  //         'https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3'
+  //       )
+  //     );
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (data) {
@@ -100,7 +98,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
             Notifications
           </h5>
 
-          <div className='max-h-[500px] overflow-y-auto rounded-sm'>
+          <div className="max-h-[500px] overflow-y-auto rounded-sm">
             {notifications &&
               notifications.map((notification: any, index: number) => (
                 <>
