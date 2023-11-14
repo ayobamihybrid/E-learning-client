@@ -20,12 +20,27 @@ type Props = {
 const OrderAnalytics: FC<Props> = ({ isDashboard }) => {
   const { data, isLoading } = useGetUsersAnalyticsQuery({});
 
-  const analyticsData: any = [];
+  const analyticsData = [
+    { name: 'Page A', count: 8907 },
+    { name: 'Page B', count: 4007 },
+    { name: 'Page C', count: 3000 },
+    { name: 'Page D', count: 4000 },
+    { name: 'Page E', count: 1000 },
+    { name: 'Page F', count: 445 },
+    { name: 'Page G', count: 3432 },
+    { name: 'Page H', count: 34 },
+    { name: 'Page H', count: 67 },
+    { name: 'Page I', count: 56 },
+    { name: 'Page J', count: 45 },
+    { name: 'Page K', count: 56 },
+  ];
 
-  data &&
-    data.courses.last12Months?.forEach((month: any) => {
-      analyticsData.push({ name: month.month, count: month.count });
-    });
+  //   const analyticsData: any = [];
+
+  //   data &&
+  //     data.courses.last12Months.forEach((month: any) => {
+  //       analyticsData.push({ name: month.month, count: month.count });
+  //     });
 
   const minValue = 0;
 

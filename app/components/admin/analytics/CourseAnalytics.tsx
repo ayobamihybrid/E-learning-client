@@ -17,12 +17,22 @@ type Props = {};
 const CourseAnalytics: FC<Props> = ({}) => {
   const { data, isLoading } = useGetCourseAnalyticsQuery({});
 
-  const analyticsData: any = [];
+  const analyticsData = [
+    { name: 'Jun 2023', uv: 3 },
+    { name: 'Jul 2023', uv: 4 },
+    { name: 'Aug 2023', uv: 3 },
+    { name: 'Sept 2023', uv: 8 },
+    { name: 'Oct 2023', uv: 9 },
+    { name: 'Nov 2023', uv: 1 },
+    { name: 'Dec 2023', uv: 2 },
+  ];
 
-  data &&
-    data?.courses?.last12Months?.forEach((month: any) => {
-      analyticsData.push({ name: month.month, uv: month.count });
-    });
+  // const analyticsData: any = [];
+
+  // data &&
+  //   data?.courses?.last12Months?.forEach((month: any) => {
+  //     analyticsData.push({ name: month.month, uv: month.count });
+  //   });
 
   const minValue = 0;
 
