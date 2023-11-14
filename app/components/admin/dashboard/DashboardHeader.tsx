@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useState, useEffect } from 'react';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { ThemeSwitcher } from '../../../utils/ThemeSwitcher';
@@ -27,28 +26,24 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
 
   const [notifications, setNotifications] = useState<any>([]);
 
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(
-    new Audio(
-      'https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3'
-    )
-  );
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Check if running on the client side before creating the Audio object
+    if (typeof window !== 'undefined') {
+      setAudio(
+        new Audio(
+          'https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3'
+        )
+      );
+    }
+  }, []);
 
   const playNotificationSound = () => {
     if (audio) {
       audio.play();
     }
   };
-
-  // useEffect(() => {
-  //   // Check if running on the client side before creating the Audio object
-  //   if (typeof window !== 'undefined') {
-  //     setAudio(
-  //       new Audio(
-  //         'https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3'
-  //       )
-  //     );
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (data) {
@@ -65,14 +60,14 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     if (audio) {
       audio.load();
     }
-  }, [data, isSuccess, audio]);
+  }, [data, isSuccess, audio, refetch]);
 
   useEffect(() => {
     socketId.on('newNotification', (data) => {
       refetch();
       playNotificationSound();
     });
-  }, []);
+  }, [refetch]);
 
   const handleNotificationStatusChange = async (id: string) => {
     await updateNotificationStatus(id);
