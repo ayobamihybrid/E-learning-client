@@ -23,17 +23,17 @@ const AllInvoices: FC<Props> = ({ isDashboard }) => {
 
   useEffect(() => {
     if (data) {
-      const temp = data.orders.map((item: any) => {
+      const temp = data.orders.map((order: any) => {
         const user = userData?.users.find(
-          (user: any) => user.id === item.userId
+          (user: any) => user.id === order.userId
         );
 
         const course = courseData?.courses.find(
-          (course: any) => course.id === item.course._id
+          (course: any) => course.id === order.course._id
         );
 
         return {
-          ...item,
+          ...order,
           userName: user?.name,
           userEmail: user?.email,
           title: course?.name,
@@ -92,7 +92,7 @@ const AllInvoices: FC<Props> = ({ isDashboard }) => {
     });
 
   return (
-    <div className={!isDashboard ? 'mt-[120px]' : 'mt-[0px]'}>
+    <div className={!isDashboard ? 'mt-[120px] z-[-1]' : 'mt-[0px]'}>
       {isLoading ? (
         <Loader />
       ) : (
