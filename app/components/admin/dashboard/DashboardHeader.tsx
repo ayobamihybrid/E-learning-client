@@ -46,6 +46,9 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     }
   }, []);
 
+  console.log(audio, 'audio');
+  
+
   useEffect(() => {
     if (data) {
       setNotifications(
@@ -66,6 +69,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   useEffect(() => {
     socketId.on('newNotification', (data) => {
       refetch();
+      console.log('New notification received:', data);
       playNotificationSound();
     });
   }, [refetch]);
