@@ -605,6 +605,7 @@ const CommentReplies = ({
             index={index}
             answer={answer}
             setAnswer={setAnswer}
+            setQuestionId={setQuestionId}
             handleSubmitAnswer={handleSubmitAnswer}
             creatingAnswerLoading={creatingAnswerLoading}
           />
@@ -619,6 +620,7 @@ const CommentItem = ({
   question,
   answer,
   setAnswer,
+  setQuestionId,
   handleSubmitAnswer,
   creatingAnswerLoading,
 }: any) => {
@@ -652,6 +654,7 @@ const CommentItem = ({
             className="800px:pl-16 text-[#000000b8] dark:text-[#ffffff83] cursor-pointer mr-2 "
             onClick={() => {
               setActiveReply(!activeReply);
+              setQuestionId(question._id);
             }}
           >
             {!activeReply
