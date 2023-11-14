@@ -64,14 +64,14 @@ const DashboardWidget: FC<Props> = ({ open, value }) => {
           const ordersPreviousMonth = ordersLastTwoMonths[0].count;
 
           const usersPercentChange =
-            usersPreviousMonth !== 0
+            usersPreviousMonth && usersCurrentMonth !== 0
               ? ((usersCurrentMonth - usersPreviousMonth) /
                   usersPreviousMonth) *
                 100
               : 100;
 
           const ordersPercentChange =
-            ordersPreviousMonth !== 0
+            ordersPreviousMonth && ordersCurrentMonth !== 0
               ? ((ordersCurrentMonth - ordersPreviousMonth) /
                   ordersPreviousMonth) *
                 100
@@ -126,7 +126,7 @@ const DashboardWidget: FC<Props> = ({ open, value }) => {
                 <h5 className="text-center pt-4">
                   {ordersPercentage?.percentChange > 0
                     ? '+' + ordersPercentage?.percentChange.toFixed(2)
-                    : '-' + ordersPercentage?.percentChange.toFixed(2)}
+                    : 0}
                   %
                 </h5>
               </div>
@@ -158,7 +158,7 @@ const DashboardWidget: FC<Props> = ({ open, value }) => {
                 <h5 className="text-center pt-4">
                   {compareUserPercentage?.percentChange > 0
                     ? '+' + compareUserPercentage?.percentChange.toFixed(2)
-                    : '-' + compareUserPercentage?.percentChange.toFixed(2)}
+                    : 0}
                   %
                 </h5>
               </div>

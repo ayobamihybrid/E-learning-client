@@ -236,7 +236,7 @@ const AdminSidebar = () => {
             </Typography>
 
             <Item
-              title="Hero "
+              title="Hero"
               to="/admin/hero"
               icon={<WebIcon />}
               selected={selected}
@@ -244,7 +244,7 @@ const AdminSidebar = () => {
             />
 
             <Item
-              title="FAQ "
+              title="FAQ"
               to="/admin/faq"
               icon={<QuizIcon />}
               selected={selected}
@@ -252,7 +252,7 @@ const AdminSidebar = () => {
             />
 
             <Item
-              title="Categories "
+              title="Categories"
               to="/admin/categories"
               icon={<WysiwygIcon />}
               selected={selected}
@@ -268,7 +268,7 @@ const AdminSidebar = () => {
             </Typography>
 
             <Item
-              title="Manage Team "
+              title="Manage Team"
               to="/admin/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
@@ -284,7 +284,7 @@ const AdminSidebar = () => {
             </Typography>
 
             <Item
-              title="Course Analytics "
+              title="Course Analytics"
               to="/admin/course-analytics"
               icon={<BarChartOutlinedIcon />}
               selected={selected}
@@ -292,7 +292,7 @@ const AdminSidebar = () => {
             />
 
             <Item
-              title="Order Analytics "
+              title="Order Analytics"
               to="/admin/orders-analytics"
               icon={<MapOutlinedIcon />}
               selected={selected}
@@ -300,7 +300,7 @@ const AdminSidebar = () => {
             />
 
             <Item
-              title="Users Analytics "
+              title="Users Analytics"
               to="/admin/users-analytics"
               icon={<ManageHistoryIcon />}
               selected={selected}
