@@ -19,27 +19,12 @@ type Props = {
 const UserAnalytics: FC<Props> = ({ isDashboard }) => {
   const { data, isLoading } = useGetUsersAnalyticsQuery({});
 
-  const analyticsData = [
-    { name: 'Jan 2023', count: 87 },
-    { name: 'Feb 2023', count: 327 },
-    { name: 'Mar 2023', count: 237 },
-    { name: 'Apr 2023', count: 7 },
-    { name: 'May 2023', count: 327 },
-    { name: 'Jun 2023', count: 37 },
-    { name: 'Jul 2023', count: 475 },
-    { name: 'Aug 2023', count: 54 },
-    { name: 'Sept 2023', count: 845 },
-    { name: 'Oct 2023', count: 94 },
-    { name: 'Nov 2023', count: 156 },
-    { name: 'Dec 2023', count: 24 },
-  ];
+  const analyticsData: any = [];
 
-  //   const analyticsData: any = [];
-
-  //   data &&
-  //     data.courses.last12Months.forEach((month: any) => {
-  //       analyticsData.push({ name: month.month, count: month.count });
-  //     });
+  data &&
+    data.courses.last12Months.forEach((month: any) => {
+      analyticsData.push({ name: month.month, count: month.count });
+    });
 
   const minValue = 0;
 
