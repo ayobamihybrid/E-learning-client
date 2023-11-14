@@ -23,7 +23,7 @@ const OrderAnalytics: FC<Props> = ({ isDashboard }) => {
   const analyticsData: any = [];
 
   data &&
-    data.courses.last12Months.forEach((month: any) => {
+    data.courses.last12Months?.forEach((month: any) => {
       analyticsData.push({ name: month.month, count: month.count });
     });
 
