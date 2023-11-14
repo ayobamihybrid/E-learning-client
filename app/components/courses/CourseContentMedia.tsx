@@ -605,7 +605,6 @@ const CommentReplies = ({
             index={index}
             answer={answer}
             setAnswer={setAnswer}
-            setQuestionId={setQuestionId}
             handleSubmitAnswer={handleSubmitAnswer}
             creatingAnswerLoading={creatingAnswerLoading}
           />
@@ -620,7 +619,6 @@ const CommentItem = ({
   question,
   answer,
   setAnswer,
-  setQuestionId,
   handleSubmitAnswer,
   creatingAnswerLoading,
 }: any) => {
@@ -654,7 +652,6 @@ const CommentItem = ({
             className="800px:pl-16 text-[#000000b8] dark:text-[#ffffff83] cursor-pointer mr-2 "
             onClick={() => {
               setActiveReply(!activeReply);
-              setQuestionId(question._id);
             }}
           >
             {!activeReply
@@ -674,65 +671,63 @@ const CommentItem = ({
           </span>
         </div>
 
-        {activeReply &&
-          setQuestionId ===
-            question._id(
+        {activeReply && (
+          <>
+            {question.questionReplies.map((qr: any, index: number) => (
               <>
-                {question.questionReplies.map((qr: any, index: number) => (
-                  <>
-                    <div
-                      key={index}
-                      className="w-full flex 800px:ml-16 my-5 text-black dark:text-white"
-                    >
-                      <div>
-                        <Image
-                          src={qr.user.avatar ? qr.user.avatar.url : avatar}
-                          alt=""
-                          width={50}
-                          height={50}
-                          className="w-[50px] h-[50px] rounded-full object-cover"
-                        />
-                      </div>
+                <div
+                  key={index}
+                  className="w-full flex 800px:ml-16 my-5 text-black dark:text-white"
+                >
+                  <div>
+                    <Image
+                      src={qr.user.avatar ? qr.user.avatar.url : avatar}
+                      alt=""
+                      width={50}
+                      height={50}
+                      className="w-[50px] h-[50px] rounded-full object-cover"
+                    />
+                  </div>
 
-                      <div className="pl-2 text-black dark:text-white">
-                        <div className="flex items-center">
-                          <h5 className="text-[20px]">{qr.user.name}</h5>{' '}
-                          {qr.user.role === 'admin' && (
-                            <MdVerified className="text-[#50c750] ml-2 text-[20px]" />
-                          )}
-                        </div>
-                        <p>{qr?.answer}</p>
-                        <small className="text-[#000000b8] dark:text-[#ffffff83]">
-                          {format(answer?.createdAt)}
-                        </small>
-                      </div>
+                  <div className="pl-2 text-black dark:text-white">
+                    <div className="flex items-center">
+                      <h5 className="text-[20px]">{qr.user.name}</h5>{' '}
+                      {qr.user.role === 'admin' && (
+                        <MdVerified className="text-[#50c750] ml-2 text-[20px]" />
+                      )}
                     </div>
-                  </>
-                ))}
-
-                <div className="w-full flex relative">
-                  <input
-                    type="text"
-                    placeholder="Reply with an answer..."
-                    value={answer}
-                    onChange={(e: any) => setAnswer(e.target.value)}
-                    className={`block text-black dark:text-white 800px:ml-12 mt-2 outline-none bg-transparent border-b border-[#00000027] dark:border-[#fff] p-[5px] w-[95%] ${
-                      answer === '' ||
-                      (creatingAnswerLoading && 'cursor-not-allowed')
-                    }  `}
-                  />
-
-                  <button
-                    type="submit"
-                    className="absolute right-0 bottom-1 text-black dark:text-white"
-                    onClick={handleSubmitAnswer}
-                    disabled={answer === '' || creatingAnswerLoading}
-                  >
-                    Add a reply
-                  </button>
+                    <p>{qr?.answer}</p>
+                    <small className="text-[#000000b8] dark:text-[#ffffff83]">
+                      {format(answer?.createdAt)}
+                    </small>
+                  </div>
                 </div>
               </>
-            )}
+            ))}
+
+            <div className="w-full flex relative">
+              <input
+                type="text"
+                placeholder="Reply with an answer..."
+                value={answer}
+                onChange={(e: any) => setAnswer(e.target.value)}
+                className={`block text-black dark:text-white 800px:ml-12 mt-2 outline-none bg-transparent border-b border-[#00000027] dark:border-[#fff] p-[5px] w-[95%] ${
+                  answer === '' ||
+                  (creatingAnswerLoading && 'cursor-not-allowed')
+                }  `}
+              />
+
+              <button
+                type="submit"
+                className="absolute right-0 bottom-1 text-black dark:text-white"
+                onClick={handleSubmitAnswer}
+                disabled={answer === '' || creatingAnswerLoading}
+              >
+                Add a reply
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
