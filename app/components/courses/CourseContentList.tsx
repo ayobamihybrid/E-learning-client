@@ -58,9 +58,9 @@ const CourseContentList: FC<Props> = ({
           0
         );
 
-        totalCount += sectionVideoCount;
-
         const sectionStartIndex: number = totalCount;
+
+        totalCount += sectionVideoCount;
 
         const sectionContentHours: number = sectionVideoLength / 60;
 
