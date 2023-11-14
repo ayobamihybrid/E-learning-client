@@ -80,7 +80,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   };
 
   return (
-    <div className="w-full flex items-center justify-end p-6 fixed top-5 right-0">
+    <div className="w-full flex items-center justify-end p-6 fixed top-5 right-0 z-10">
       <ThemeSwitcher />
 
       <div
@@ -94,7 +94,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
       </div>
 
       {open && (
-        <div className="w-[420px] dark:bg-[#1213145a] bg-white bg-opacity-100 shadow-xl absolute top-16 rounded ">
+        <div className="w-[420px] dark:bg-[#1213145a] bg-white bg-opacity-100 shadow-xl absolute top-16 rounded z-10">
           <h5 className="text-center text-[20px] font-Poppins text-black dark:text-white p-3">
             Notifications
           </h5>

@@ -4,7 +4,7 @@ import Heading from '../../utils/Heading';
 import AdminProtected from '../../hooks/adminProtected';
 import AdminSidebar from '../../components/admin/sidebar/AdminSidebar';
 import DashboardHero from '../../components/admin/dashboard/DashboardHero';
-import AllInvoices from '@/app/components/admin/order/AllInvoices';
+import AllInvoices from '../../../app/components/admin/order/AllInvoices';
 
 type Props = {};
 

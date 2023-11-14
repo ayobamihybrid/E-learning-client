@@ -92,7 +92,7 @@ const AllInvoices: FC<Props> = ({ isDashboard }) => {
     });
 
   return (
-    <div className={!isDashboard ? 'mt-[120px] z-[-1]' : 'mt-[0px]'}>
+    <div className={!isDashboard ? 'mt-[120px] z-[-1]' : 'mt-[0px] z-[-1]'}>
       {isLoading ? (
         <Loader />
       ) : (
