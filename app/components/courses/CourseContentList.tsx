@@ -71,8 +71,6 @@ const CourseContentList: FC<Props> = ({
               key={sectionIndex}
             >
               <div className="w-full flex">
-                {/* render video section */}
-
                 <div className="w-full flex justify-between items-center ">
                   <h2 className="text-[22px] text-black dark:text-white  ">
                     {section}

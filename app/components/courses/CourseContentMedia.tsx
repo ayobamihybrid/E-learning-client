@@ -145,7 +145,6 @@ const CourseContentMedia: FC<Props> = ({
       setQuestion('');
       refetch();
 
-      
       toast.success('Question added');
 
       socketId.emit('notification', {
@@ -252,11 +251,7 @@ const CourseContentMedia: FC<Props> = ({
         </div>
 
         <div
-          className={`${
-            styles.button
-          } !w-[unset] !min-h-[40px] !py-[unset] text-white ${
-            activeVideo === 0 && '!cursor-no-drop opacity-[0.8]'
-          } `}
+          className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset] text-white  `}
           onClick={() =>
             setActiveVideo(
               data && data.length - 1 === activeVideo
@@ -462,7 +457,10 @@ const CourseContentMedia: FC<Props> = ({
                 {(course?.reviews && [...course.reviews].reverse()).map(
                   (review: any, index: number) => (
                     <>
-                      <div key={index} className="w-full my-5 text-black dark:text-white">
+                      <div
+                        key={index}
+                        className="w-full my-5 text-black dark:text-white"
+                      >
                         <div className="w-full flex">
                           <div>
                             <Image
@@ -491,78 +489,86 @@ const CourseContentMedia: FC<Props> = ({
                           </div>
                         </div>
 
-                        {user.role === 'admin' && review?.commentReplies.length === 0 && (
-                          <span
-                            className={`${styles.label} !ml-[55px] text-[15px] cursor-pointer`}
-                            onClick={() => {
-                              setIsReviewReply(!isReviewReply);
-                              setReviewId(review._id);
-                            }}
-                          >
-                            Add reply
-                          </span>
-                        )}
+                        {user.role === 'admin' &&
+                          review?.commentReplies.length === 0 && (
+                            <span
+                              className={`${styles.label} !ml-[55px] text-[15px] cursor-pointer`}
+                              onClick={() => {
+                                setIsReviewReply(!isReviewReply);
+                                setReviewId(review._id);
+                              }}
+                            >
+                              Add reply
+                            </span>
+                          )}
 
-                        {isReviewReply && reviewId === review._id (
-                          <>
-                            <div className="w-full flex relative">
-                              <input
-                                type="text"
-                                placeholder="Send a reply..."
-                                value={reviewReply}
-                                onChange={(e: any) =>
-                                  setReviewReply(e.target.value)
-                                }
-                                className="block 800px:ml-12 outline-none bg-transparent border-b border-[#000] dark:border-[#fff] p-[5px] w-[95%] "
-                              />
+                        {isReviewReply &&
+                          reviewId ===
+                            review._id(
+                              <>
+                                <div className="w-full flex relative">
+                                  <input
+                                    type="text"
+                                    placeholder="Send a reply..."
+                                    value={reviewReply}
+                                    onChange={(e: any) =>
+                                      setReviewReply(e.target.value)
+                                    }
+                                    className="block 800px:ml-12 outline-none bg-transparent border-b border-[#000] dark:border-[#fff] p-[5px] w-[95%] "
+                                  />
 
-                              <button
-                                type="submit"
-                                className="absolute right-0 bottom-1"
-                                onClick={() => handleReviewReply()}
+                                  <button
+                                    type="submit"
+                                    className="absolute right-0 bottom-1"
+                                    onClick={() => handleReviewReply()}
+                                  >
+                                    Add reply
+                                  </button>
+                                </div>
+                              </>
+                            )}
+
+                        {review.commentReplies.map(
+                          (reviewReply: any, index: number) => (
+                            <>
+                              <div
+                                key={index}
+                                className="w-full flex 800px:ml-16 my-5 "
                               >
-                                Add reply
-                              </button>
-                            </div>
-                          </>
-                        )}
-
-                        {review.commentReplies.map((reviewReply: any, index: number) => (
-                          <>
-                            <div key={index} className="w-full flex 800px:ml-16 my-5 ">
-                              <div className="w-[50px] h-[50px] ">
-                                <Image
-                                  src={
-                                    reviewReply?.user.avatar
-                                      ? reviewReply?.user.avatar.url
-                                      : avatar
-                                  }
-                                  alt=""
-                                  width={50}
-                                  height={50}
-                                  className="w-[50px] h-[50px] rounded-full object-cover"
-                                />
-                              </div>
-
-                              <div className="pl-2">
-                                <div className="flex items-center">
-                                  <h5 className="text-[20px]">
-                                    {reviewReply.user.name}
-                                  </h5>{' '}
-                                  {reviewReply.user.role === 'admin' && (
-                                    <MdVerified className="text-[#50c750] ml-2 text-[20px]" />
-                                  )}
+                                <div className="w-[50px] h-[50px] ">
+                                  <Image
+                                    src={
+                                      reviewReply?.user.avatar
+                                        ? reviewReply?.user.avatar.url
+                                        : avatar
+                                    }
+                                    alt=""
+                                    width={50}
+                                    height={50}
+                                    className="w-[50px] h-[50px] rounded-full object-cover"
+                                  />
                                 </div>
 
-                                <p>{reviewReply.comment}</p>
+                                <div className="pl-2">
+                                  <div className="flex items-center">
+                                    <h5 className="text-[20px]">
+                                      {reviewReply.user.name}
+                                    </h5>{' '}
+                                    {reviewReply.user.role === 'admin' && (
+                                      <MdVerified className="text-[#50c750] ml-2 text-[20px]" />
+                                    )}
+                                  </div>
 
-                                <small className="dark:text-[#ffffff83] text-black ">
-                                  {format(reviewReply.createdAt)}
-                                </small>
+                                  <p>{reviewReply.comment}</p>
+
+                                  <small className="dark:text-[#ffffff83] text-black ">
+                                    {format(reviewReply.createdAt)}
+                                  </small>
+                                </div>
                               </div>
-                            </div>
-                          </>
-                        ))}
+                            </>
+                          )
+                        )}
                       </div>
                     </>
                   )
@@ -668,60 +674,65 @@ const CommentItem = ({
           </span>
         </div>
 
-        {activeReply && setQuestionId === question._id (
-          <>
-            {question.questionReplies.map((qr: any, index:number) => (
+        {activeReply &&
+          setQuestionId ===
+            question._id(
               <>
-                <div key={index} className="w-full flex 800px:ml-16 my-5 text-black dark:text-white">
-                  <div>
-                    <Image
-                      src={qr.user.avatar ? qr.user.avatar.url : avatar}
-                      alt=""
-                      width={50}
-                      height={50}
-                      className="w-[50px] h-[50px] rounded-full object-cover"
-                    />
-                  </div>
+                {question.questionReplies.map((qr: any, index: number) => (
+                  <>
+                    <div
+                      key={index}
+                      className="w-full flex 800px:ml-16 my-5 text-black dark:text-white"
+                    >
+                      <div>
+                        <Image
+                          src={qr.user.avatar ? qr.user.avatar.url : avatar}
+                          alt=""
+                          width={50}
+                          height={50}
+                          className="w-[50px] h-[50px] rounded-full object-cover"
+                        />
+                      </div>
 
-                  <div className="pl-2 text-black dark:text-white">
-                    <div className="flex items-center">
-                      <h5 className="text-[20px]">{qr.user.name}</h5>{' '}
-                      {qr.user.role === 'admin' && (
-                        <MdVerified className="text-[#50c750] ml-2 text-[20px]" />
-                      )}
+                      <div className="pl-2 text-black dark:text-white">
+                        <div className="flex items-center">
+                          <h5 className="text-[20px]">{qr.user.name}</h5>{' '}
+                          {qr.user.role === 'admin' && (
+                            <MdVerified className="text-[#50c750] ml-2 text-[20px]" />
+                          )}
+                        </div>
+                        <p>{qr?.answer}</p>
+                        <small className="text-[#000000b8] dark:text-[#ffffff83]">
+                          {format(answer?.createdAt)}
+                        </small>
+                      </div>
                     </div>
-                    <p>{qr?.answer}</p>
-                    <small className="text-[#000000b8] dark:text-[#ffffff83]">
-                      {format(answer?.createdAt)}
-                    </small>
-                  </div>
+                  </>
+                ))}
+
+                <div className="w-full flex relative">
+                  <input
+                    type="text"
+                    placeholder="Reply with an answer..."
+                    value={answer}
+                    onChange={(e: any) => setAnswer(e.target.value)}
+                    className={`block text-black dark:text-white 800px:ml-12 mt-2 outline-none bg-transparent border-b border-[#00000027] dark:border-[#fff] p-[5px] w-[95%] ${
+                      answer === '' ||
+                      (creatingAnswerLoading && 'cursor-not-allowed')
+                    }  `}
+                  />
+
+                  <button
+                    type="submit"
+                    className="absolute right-0 bottom-1 text-black dark:text-white"
+                    onClick={handleSubmitAnswer}
+                    disabled={answer === '' || creatingAnswerLoading}
+                  >
+                    Add a reply
+                  </button>
                 </div>
               </>
-            ))}
-
-            <div className="w-full flex relative">
-              <input
-                type="text"
-                placeholder="Reply with an answer..."
-                value={answer}
-                onChange={(e: any) => setAnswer(e.target.value)}
-                className={`block text-black dark:text-white 800px:ml-12 mt-2 outline-none bg-transparent border-b border-[#00000027] dark:border-[#fff] p-[5px] w-[95%] ${
-                  answer === '' ||
-                  (creatingAnswerLoading && 'cursor-not-allowed')
-                }  `}
-              />
-
-              <button
-                type="submit"
-                className="absolute right-0 bottom-1 text-black dark:text-white"
-                onClick={handleSubmitAnswer}
-                disabled={answer === '' || creatingAnswerLoading}
-              >
-                Add a reply
-              </button>
-            </div>
-          </>
-        )}
+            )}
       </div>
     </>
   );

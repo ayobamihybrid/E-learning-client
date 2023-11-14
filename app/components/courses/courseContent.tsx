@@ -20,9 +20,6 @@ const CourseContent: FC<Props> = ({ id, user }) => {
     refetchOnMountOrArgChange: true,
   });
 
-  console.log(contentData, 'content Data');
-  
-
   const data = contentData?.courseContent;
 
   const [activeVideo, setActiveVideo] = useState(0);
