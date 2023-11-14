@@ -53,8 +53,6 @@ const CourseContentList: FC<Props> = ({
 
         const sectionVideoCount: number = sectionVideos?.length;
 
-        console.log(sectionVideoCount, 'section video count');
-
         const sectionVideoLength: number = sectionVideos.reduce(
           (acc: number, item: any) => acc + item?.videoLength,
           0
@@ -110,8 +108,6 @@ const CourseContentList: FC<Props> = ({
                       const videoIndex: number = sectionStartIndex + index;
 
                       const contentLength: number = item.videoLength / 60;
-
-                      console.log(item, 'item');
 
                       return (
                         <>
