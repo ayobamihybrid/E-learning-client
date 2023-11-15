@@ -29,9 +29,20 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
 
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
+  // const playNotificationSound = () => {
+  //   if (audio) {
+  //     audio.play();
+  //   }
+  // };
+
   const playNotificationSound = () => {
     if (audio) {
-      audio.play();
+      if (audio.paused) {
+        audio.volume = 1.0; // Set volume to the maximum
+        audio.play().catch((error) => {
+          console.error('Error playing audio:', error);
+        });
+      }
     }
   };
 
@@ -47,7 +58,6 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   }, []);
 
   console.log(audio, 'audio');
-  
 
   useEffect(() => {
     if (data) {
