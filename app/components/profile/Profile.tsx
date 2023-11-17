@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 import ProfileInfo from './ProfileInfo';
 import ChangePassword from '../auth/ChangePassword';
 import CourseCard from '../courses/CourseCard';
-import Courses from '../courses/Courses';
 import { useGetAllCoursesQuery } from '../../../redux/features/courses/coursesApi';
 
 type Props = { user: any };
@@ -90,7 +89,7 @@ const Profile: FC<Props> = ({ user }) => {
               ))}
           </div>
 
-          {Courses.length === 0 && (
+          {courses.length === 0 && (
             <h1 className="text-center text-[18px] font-Poppins">
               You do not have any purchased course yet!
             </h1>

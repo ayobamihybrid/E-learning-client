@@ -247,7 +247,7 @@ const CourseContentMedia: FC<Props> = ({
           }
         >
           <AiOutlineArrowLeft className="mr-2" />
-          Prev Lesson
+          <p className=" text-[15px] 800px:text-[18px]">Prev Lesson</p>
         </div>
 
         <div
@@ -261,7 +261,7 @@ const CourseContentMedia: FC<Props> = ({
           }
         >
           <AiOutlineArrowRight className="mr-2" />
-          Next Lesson
+          <p className=" text-[15px] 800px:text-[18px]">Next Lesson</p>
         </div>
       </div>
 
@@ -495,7 +495,7 @@ const CourseContentMedia: FC<Props> = ({
                               className={`${styles.label} !ml-[55px] text-[15px] cursor-pointer`}
                               onClick={() => {
                                 setIsReviewReply(!isReviewReply);
-                                setReviewId(review._id);
+                                setReviewId(review?._id);
                               }}
                             >
                               Add reply
